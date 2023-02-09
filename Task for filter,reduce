@@ -1,0 +1,83 @@
+// Day 7 Task//
+//a). Get ll the countries from the asia continent/region using filter function
+
+
+var request=new XMLHttpRequest();
+request.open("GET","https://restcountries.com/v3.1/all");
+request.send();
+request.onload=function(){
+    var result=JSON.parse(request.response);
+    let data = result.filter((country,i)=>{
+    console.log(country.region,i)   
+    });  
+    } 
+
+
+//b). Get ll the countries with a population < 200000 using filter function
+
+    var request=new XMLHttpRequest();
+request.open("GET","https://restcountries.com/v3.1/all");
+request.send();
+request.onload=function(){
+    var result=JSON.parse(request.response);
+    let data = result.filter((country,i)=>{
+    if(country.population<200000){
+     console.log(country.population,i)
+    }
+      
+    });  
+    }
+
+//c). print the following details name,capital,flag using forEach function
+
+
+
+    var request=new XMLHttpRequest();
+    request.open("GET","https://restcountries.com/v3.1/all");
+    request.send();
+    request.onload=function(){
+        var result=JSON.parse(request.response);
+        result.forEach((detail,i)=>{
+       console.log("country:" + detail.name.common,i)
+        console.log("capital:"+ detail.capital)
+        console.log("flag:" + detail.flag)
+        
+        })
+        }
+
+
+  //d).print the total population of countries using reduce function
+
+
+        var request=new XMLHttpRequest();
+        request.open("GET","https://restcountries.com/v3.1/all");
+        request.send();
+        request.onload=function(){
+            var result=JSON.parse(request.response);
+           var data =  result.reduce((total,subtotal)=>{
+            if(typeof total === "object"){     // this line,because first element is object , next element only number thuswhy we change this 
+            return total.population + subtotal.population
+            }
+            return total + subtotal.population
+            });
+            console.log(data)
+            }
+
+
+///e).print the country which uses US Doller as currency
+
+
+ var request=new XMLHttpRequest();
+
+request.open("GET","https://restcountries.com/v3.1/all");
+
+request.send();
+
+request.onload=function(){
+
+    var result=JSON.parse(request.response);
+    let data = result.filter((country,i)=>{
+    console.log(country.currencies.USD,i)
+   
+    });
+    }
